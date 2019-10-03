@@ -151,18 +151,18 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-        if (this.fingerAction == "mousedown") {
-            // if mousedown, then move player up
-            // Make the UP movement > than down movement - this will
-            // make it look like the player is moving up alot
-            player.setyPosition(player.getyPosition() - 100);
-            player.updateHitbox();
-        }
-        else if (this.fingerAction == "mouseup") {
-            // if mouseup, then move player down
-            player.setyPosition(player.getyPosition() + 10);
-            player.updateHitbox();
-        }
+//        if (this.fingerAction == "mousedown") {
+//            // if mousedown, then move player up
+//            // Make the UP movement > than down movement - this will
+//            // make it look like the player is moving up alot
+//            player.setyPosition(player.getyPosition() - 100);
+//            player.updateHitbox();
+//        }
+//        else if (this.fingerAction == "mouseup") {
+//            // if mouseup, then move player down
+//            player.setyPosition(player.getyPosition() + 10);
+//            player.updateHitbox();
+//        }
 
 
 
@@ -361,9 +361,21 @@ public class GameEngine extends SurfaceView implements Runnable {
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
+
+        float fingerXPosition = event.getX();
+        float fingerYPosition = event.getY();
         if (userAction == MotionEvent.ACTION_DOWN) {
 
-            fingerAction = "mousedown";
+            if(fingerXPosition <= this.screenHeight/2){
+                //move racket left
+                player.setyPosition(player.getyPosition() - 100);
+                player.updateHitbox();
+            }
+            else if(fingerYPosition > this.screenHeight/2){
+                //move racket right
+                player.setyPosition(player.getyPosition() + 100);
+                player.updateHitbox();
+            }
 
 
 

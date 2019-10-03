@@ -42,6 +42,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     Item item4;
     Item item5;
     Item item6;
+    Item item7;
 
     Player player;
 
@@ -83,13 +84,23 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-        final int min = 50;
-        final int max = 200;
-        final int random = new Random().nextInt((max - min) + 1) + min;
+        final int min = 0;
+        final int max = 500;
+        int random = new Random().nextInt((max - min) + 1) + min;
 
+        if(random < 100){
+            random = 100;
+        }
+        else if(random>=100 || random<200){
+            random =200;
+        }
+        else if(random>=200 || random<300){
+            random =300;
+        }
         item4 = new Item(getContext(),10,screenHeight/2-random);
-        item5 = new Item(getContext(),10,screenHeight/2-random);
+        item5 = new Item(getContext(),10,screenHeight/2-random -200);
         item6 = new Item(getContext(),10,screenHeight/2+random);
+        item7 = new Item(getContext(),10,screenHeight/2+random);
 
 
         this.player = new Player(getContext(), 1500, 200);
@@ -168,13 +179,101 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-
+        this.item7.setxPosition(this.item7.getxPosition()+35);
+        this.item7.updateHitbox();
         this.item6.setxPosition(this.item6.getxPosition()+15);
         this.item6.updateHitbox();
         this.item5.setxPosition(this.item5.getxPosition()+25);
         this.item5.updateHitbox();
         this.item4.setxPosition(this.item4.getxPosition()+35);
         this.item4.updateHitbox();
+
+
+        if(this.item4.getxPosition() > screenWidth ){
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item4 = new Item(getContext(),10,screenHeight/2-random);
+        }
+        if(this.item5.getxPosition() > screenWidth ){
+
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item5 = new Item(getContext(),10,screenHeight/2-random);
+        }
+        if(this.item6.getxPosition() > screenWidth ){
+
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item6 = new Item(getContext(),10,screenHeight/2-random );
+        }
+        if(this.item7.getxPosition() > screenWidth ){
+
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item7 = new Item(getContext(),10,screenHeight/2-random);
+        }
+
+        if (this.player.getHitbox().intersect(this.item4.getHitbox()) == true) {
+            // the enemy and player are colliding
+
+            // @TODO: What do you want to do next?
+
+
+            // decrease the lives
+            score = score +1;
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item4 = new Item(getContext(),10,screenHeight/2-random);
+
+        }
+
+        if (this.player.getHitbox().intersect(this.item5.getHitbox()) == true) {
+            // the enemy and player are colliding
+
+            // @TODO: What do you want to do next?
+
+
+            // decrease the lives
+            lives = lives-1;
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item5 = new Item(getContext(),10,screenHeight/2-random);
+
+        }
+        if (this.player.getHitbox().intersect(this.item6.getHitbox()) == true) {
+            // the enemy and player are colliding
+
+            // @TODO: What do you want to do next?
+
+
+            // decrease the lives
+            score = score +1;
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item6 = new Item(getContext(),10,screenHeight/2-random );
+
+        }
+        if (this.player.getHitbox().intersect(this.item7.getHitbox()) == true) {
+            // the enemy and player are colliding
+
+            // @TODO: What do you want to do next?
+
+
+            // decrease the lives
+            score = score +1;
+            final int min = 0;
+            final int max = 500;
+            int random = new Random().nextInt((max - min) + 1) + min;
+            item7 = new Item(getContext(),10,screenHeight/2-random);
+
+        }
 
 
     }
@@ -223,6 +322,9 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawBitmap(item6.getImage2(), item6.getxPosition(), item6.getyPosition(), paintbrush);
             // 2. draw the enemy's hitbox
             canvas.drawRect(item6.getHitbox(), paintbrush);
+            canvas.drawBitmap(item7.getImage2(), item7.getxPosition(), item7.getyPosition(), paintbrush);
+            // 2. draw the enemy's hitbox
+            canvas.drawRect(item7.getHitbox(), paintbrush);
 
 
             paintbrush.setTextSize(50);

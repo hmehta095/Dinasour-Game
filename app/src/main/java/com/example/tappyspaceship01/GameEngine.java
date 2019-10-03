@@ -217,6 +217,10 @@ public class GameEngine extends SurfaceView implements Runnable {
             item7 = new Item(getContext(),10,screenHeight/2-random);
         }
 
+        if(this.player.getyPosition()<=0 || this.player.getyPosition()>= screenHeight ){
+            this.player = new Player(getContext(), 1500, 200);
+        }
+
         if (this.player.getHitbox().intersect(this.item4.getHitbox()) == true) {
             // the enemy and player are colliding
 

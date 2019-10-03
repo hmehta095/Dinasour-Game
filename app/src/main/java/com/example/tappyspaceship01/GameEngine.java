@@ -83,10 +83,13 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
+        final int min = 50;
+        final int max = 200;
+        final int random = new Random().nextInt((max - min) + 1) + min;
 
-        item4 = new Item(getContext(),10,screenHeight/2-350);
-        item5 = new Item(getContext(),10,screenHeight/2-150);
-        item6 = new Item(getContext(),10,screenHeight/2+50);
+        item4 = new Item(getContext(),10,screenHeight/2-random);
+        item5 = new Item(getContext(),10,screenHeight/2-random);
+        item6 = new Item(getContext(),10,screenHeight/2+random);
 
 
         this.player = new Player(getContext(), 1500, 200);
@@ -162,6 +165,17 @@ public class GameEngine extends SurfaceView implements Runnable {
             player.setyPosition(player.getyPosition() + 10);
             player.updateHitbox();
         }
+
+
+
+
+        this.item6.setxPosition(this.item6.getxPosition()+15);
+        this.item6.updateHitbox();
+        this.item5.setxPosition(this.item5.getxPosition()+25);
+        this.item5.updateHitbox();
+        this.item4.setxPosition(this.item4.getxPosition()+35);
+        this.item4.updateHitbox();
+
 
     }
 

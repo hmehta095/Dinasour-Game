@@ -39,8 +39,14 @@ public class GameEngine extends SurfaceView implements Runnable {
     Item item1;
     Item item2;
     Item item3;
+    Item item4;
+    Item item5;
+    Item item6;
 
     Player player;
+
+    int score;
+    int lives = 3;
 
 
 
@@ -70,13 +76,20 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.screenWidth = w;
         this.screenHeight = h;
 
-        item = new Item(getContext(),0,screenHeight/2-400);
-        item1 = new Item(getContext(),0,screenHeight/2-200);
-        item2 = new Item(getContext(),0,screenHeight/2);
-        item3 = new Item(getContext(),0,screenHeight/2+200);
+        item = new Item(getContext(),0,screenHeight/2-350);
+        item1 = new Item(getContext(),0,screenHeight/2-150);
+        item2 = new Item(getContext(),0,screenHeight/2+50);
+        item3 = new Item(getContext(),0,screenHeight/2+250);
 
 
-        this.player = new Player(getContext(), 1500, 350);
+
+
+        item4 = new Item(getContext(),10,screenHeight/2-350);
+        item5 = new Item(getContext(),10,screenHeight/2-150);
+        item6 = new Item(getContext(),10,screenHeight/2+50);
+
+
+        this.player = new Player(getContext(), 1500, 200);
 
 
         this.printScreenInfo();
@@ -134,6 +147,22 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ------------------------------
 
     public void updatePositions() {
+
+
+
+        if (this.fingerAction == "mousedown") {
+            // if mousedown, then move player up
+            // Make the UP movement > than down movement - this will
+            // make it look like the player is moving up alot
+            player.setyPosition(player.getyPosition() - 100);
+            player.updateHitbox();
+        }
+        else if (this.fingerAction == "mouseup") {
+            // if mouseup, then move player down
+            player.setyPosition(player.getyPosition() + 10);
+            player.updateHitbox();
+        }
+
     }
 
     public void redrawSprites() {
@@ -171,8 +200,21 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawRect(item3.getxPosition(),item3.getyPosition(),
                     item3.getxPosition()+1400,item3.getyPosition()+20,paintbrush);
 
-//
+            canvas.drawBitmap(item4.getImage(), item4.getxPosition(), item4.getyPosition(), paintbrush);
+            // 2. draw the enemy's hitbox
+            canvas.drawRect(item4.getHitbox(), paintbrush);
+            canvas.drawBitmap(item5.getImage1(), item5.getxPosition(), item5.getyPosition(), paintbrush);
+            // 2. draw the enemy's hitbox
+            canvas.drawRect(item5.getHitbox(), paintbrush);
+            canvas.drawBitmap(item6.getImage2(), item6.getxPosition(), item6.getyPosition(), paintbrush);
+            // 2. draw the enemy's hitbox
+            canvas.drawRect(item6.getHitbox(), paintbrush);
 
+
+            paintbrush.setTextSize(50);
+            canvas.drawText("Lives Remaining: " + lives,this.screenWidth-500,50,paintbrush);
+            paintbrush.setTextSize(50);
+            canvas.drawText("Score: " +this.score , 20, 50, paintbrush);
 
 
 
@@ -203,9 +245,11 @@ public class GameEngine extends SurfaceView implements Runnable {
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
 
+            fingerAction = "mousedown";
         }
         else if (userAction == MotionEvent.ACTION_UP) {
 
+            fingerAction = "mouseup";
         }
 
         return true;

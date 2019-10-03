@@ -11,10 +11,14 @@ public class Item {
     // Image
     // Hitbox
     private Bitmap image;
+    private Bitmap image1;
+    private Bitmap image2;
     private Rect hitbox;
 
     private int xPosition;
     private int yPosition;
+
+
 
     public Item(Context context, int x, int y) {
         // 1. set up the initial position of the Enemy
@@ -22,7 +26,9 @@ public class Item {
         this.yPosition = y;
 
         // 2. Set the default image - all enemies have same image
-        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.alien_ship2);
+        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.rainbow64);
+        this.image1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.poop64);
+        this.image2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.candy64);
 
         // 3. Set the default hitbox - all enemies have same hitbox
         this.hitbox = new Rect(
@@ -36,6 +42,21 @@ public class Item {
     // Getter and setters
     // Autogenerate this by doing Right Click --> Generate --> Getter&Setter
 
+    public Bitmap getImage1() {
+        return image1;
+    }
+
+    public void setImage1(Bitmap image1) {
+        this.image1 = image1;
+    }
+
+    public Bitmap getImage2() {
+        return image2;
+    }
+
+    public void setImage2(Bitmap image2) {
+        this.image2 = image2;
+    }
     public Bitmap getImage() {
         return image;
     }

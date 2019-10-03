@@ -64,4 +64,11 @@ public class Player {
     public void setyPosition(int yPosition) {
         this.yPosition = yPosition;
     }
+
+    public void updateHitbox() {
+        this.hitbox.left = this.xPosition;
+        this.hitbox.top = this.yPosition;
+        this.hitbox.right = this.xPosition + this.image.getWidth();
+        this.hitbox.bottom = this.yPosition + this.image.getHeight();
+    }
 }

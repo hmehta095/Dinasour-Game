@@ -366,7 +366,7 @@ public class GameEngine extends SurfaceView implements Runnable {
         float fingerYPosition = event.getY();
         if (userAction == MotionEvent.ACTION_DOWN) {
 
-            if(fingerXPosition <= this.screenHeight/2){
+            if(fingerYPosition <= this.screenHeight/2){
                 //move racket left
                 player.setyPosition(player.getyPosition() - 100);
                 player.updateHitbox();

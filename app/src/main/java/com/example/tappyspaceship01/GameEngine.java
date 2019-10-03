@@ -280,6 +280,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         }
 
 
+
+
     }
 
     public void redrawSprites() {
@@ -337,6 +339,17 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawText("Score: " +this.score , 20, 50, paintbrush);
 
 
+            if(lives <1){
+
+                paintbrush.setTextSize(60);
+                paintbrush.setColor(Color.BLACK);
+                canvas.drawText("Game Over ",
+                        this.screenWidth/2 -200,
+                        this.screenHeight/2,
+                        paintbrush
+                );
+                pauseGame();
+            }
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
@@ -366,6 +379,13 @@ public class GameEngine extends SurfaceView implements Runnable {
         if (userAction == MotionEvent.ACTION_DOWN) {
 
             fingerAction = "mousedown";
+
+            
+
+
+
+
+
         }
         else if (userAction == MotionEvent.ACTION_UP) {
 

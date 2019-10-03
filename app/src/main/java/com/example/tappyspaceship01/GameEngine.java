@@ -84,23 +84,10 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-        final int min = 0;
-        final int max = 500;
-        int random = new Random().nextInt((max - min) + 1) + min;
-
-        if(random < 100){
-            random = 100;
-        }
-        else if(random>=100 || random<200){
-            random =200;
-        }
-        else if(random>=200 || random<300){
-            random =300;
-        }
-        item4 = new Item(getContext(),10,screenHeight/2-random);
-        item5 = new Item(getContext(),10,screenHeight/2-random -200);
-        item6 = new Item(getContext(),10,screenHeight/2+random);
-        item7 = new Item(getContext(),10,screenHeight/2+random);
+        item4 = new Item(getContext(),10,screenHeight/2-330);
+        item5 = new Item(getContext(),10,screenHeight/2-120);
+        item6 = new Item(getContext(),10,screenHeight/2+80);
+        item7 = new Item(getContext(),10,screenHeight/2-550);
 
 
         this.player = new Player(getContext(), 1500, 200);
@@ -190,31 +177,36 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
         if(this.item4.getxPosition() > screenWidth ){
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item4 = new Item(getContext(),10,screenHeight/2-random);
+            item4 = new Item(getContext(),10,screenHeight/2-330);
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item4 = new Item(getContext(),10,screenHeight/2-random);
         }
         if(this.item5.getxPosition() > screenWidth ){
+            item5 = new Item(getContext(),10,screenHeight/2-120);
 
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item5 = new Item(getContext(),10,screenHeight/2-random);
+
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item5 = new Item(getContext(),10,screenHeight/2-random);
         }
         if(this.item6.getxPosition() > screenWidth ){
+            item6 = new Item(getContext(),10,screenHeight/2+80);
 
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item6 = new Item(getContext(),10,screenHeight/2-random );
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item6 = new Item(getContext(),10,screenHeight/2-random );
         }
         if(this.item7.getxPosition() > screenWidth ){
 
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item7 = new Item(getContext(),10,screenHeight/2-random);
+            item7 = new Item(getContext(),10,screenHeight/2-550);
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item7 = new Item(getContext(),10,screenHeight/2-random);
         }
 
         if(this.player.getyPosition()<=0 || this.player.getyPosition()>= screenHeight ){
@@ -229,10 +221,11 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             // decrease the lives
             score = score +1;
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item4 = new Item(getContext(),10,screenHeight/2-random);
+            item4 = new Item(getContext(),10,screenHeight/2-330);
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item4 = new Item(getContext(),10,screenHeight/2-random);
 
         }
 
@@ -244,10 +237,12 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             // decrease the lives
             lives = lives-1;
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item5 = new Item(getContext(),10,screenHeight/2-random);
+            item5 = new Item(getContext(),10,screenHeight/2-120);
+
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item5 = new Item(getContext(),10,screenHeight/2-random);
 
         }
         if (this.player.getHitbox().intersect(this.item6.getHitbox()) == true) {
@@ -258,10 +253,11 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             // decrease the lives
             score = score +1;
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item6 = new Item(getContext(),10,screenHeight/2-random );
+            item6 = new Item(getContext(),10,screenHeight/2+80);
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item6 = new Item(getContext(),10,screenHeight/2-random );
 
         }
         if (this.player.getHitbox().intersect(this.item7.getHitbox()) == true) {
@@ -270,12 +266,13 @@ public class GameEngine extends SurfaceView implements Runnable {
             // @TODO: What do you want to do next?
 
 
-            // decrease the lives
+
             score = score +1;
-            final int min = 0;
-            final int max = 500;
-            int random = new Random().nextInt((max - min) + 1) + min;
-            item7 = new Item(getContext(),10,screenHeight/2-random);
+            item7 = new Item(getContext(),10,screenHeight/2-550);
+//            final int min = 0;
+//            final int max = 500;
+//            int random = new Random().nextInt((max - min) + 1) + min;
+//            item7 = new Item(getContext(),10,screenHeight/2-random);
 
         }
 
@@ -339,18 +336,6 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawText("Score: " +this.score , 20, 50, paintbrush);
 
 
-            if(lives <1){
-
-                paintbrush.setTextSize(60);
-                paintbrush.setColor(Color.BLACK);
-                canvas.drawText("Game Over ",
-                        this.screenWidth/2 -200,
-                        this.screenHeight/2,
-                        paintbrush
-                );
-                pauseGame();
-            }
-
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
         }
@@ -380,7 +365,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             fingerAction = "mousedown";
 
-            
+
 
 
 

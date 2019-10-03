@@ -28,11 +28,13 @@ public class Item {
         this.yPosition = y;
 
         // 2. Set the default image - all enemies have same image
+        int[] images = {R.drawable.rainbow64,R.drawable.poop64,R.drawable.candy64};
+        Random rand = new Random();
+//        imageView.setImageResource();
 
-
-        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.rainbow64);
-        this.image1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.poop64);
-        this.image2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.candy64);
+        this.image = BitmapFactory.decodeResource(context.getResources(), images[rand.nextInt(images.length)]);
+        this.image1 = BitmapFactory.decodeResource(context.getResources(), images[rand.nextInt(images.length)]);
+        this.image2 = BitmapFactory.decodeResource(context.getResources(), images[rand.nextInt(images.length)]);
 
         // 3. Set the default hitbox - all enemies have same hitbox
         this.hitbox = new Rect(

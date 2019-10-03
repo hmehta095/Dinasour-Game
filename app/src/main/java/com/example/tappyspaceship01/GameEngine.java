@@ -35,6 +35,12 @@ public class GameEngine extends SurfaceView implements Runnable {
     SurfaceHolder holder;
     Canvas canvas;
     Paint paintbrush;
+    Item item;
+    Item item1;
+    Item item2;
+    Item item3;
+
+    Player player;
 
 
 
@@ -45,6 +51,8 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## SPRITES
     // ----------------------------
+
+
 
     // represent the TOP LEFT CORNER OF THE GRAPHIC
 
@@ -61,6 +69,15 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         this.screenWidth = w;
         this.screenHeight = h;
+
+        item = new Item(getContext(),0,screenHeight/2-400);
+        item1 = new Item(getContext(),0,screenHeight/2-200);
+        item2 = new Item(getContext(),0,screenHeight/2);
+        item3 = new Item(getContext(),0,screenHeight/2+200);
+
+
+        this.player = new Player(getContext(), 1500, 350);
+
 
         this.printScreenInfo();
     }
@@ -136,6 +153,28 @@ public class GameEngine extends SurfaceView implements Runnable {
             paintbrush.setColor(Color.BLUE);
             paintbrush.setStyle(Paint.Style.STROKE);
             paintbrush.setStrokeWidth(5);
+
+
+            // draw player graphic on screen
+            canvas.drawBitmap(player.getImage(), player.getxPosition(), player.getyPosition(), paintbrush);
+            // draw the player's hitbox
+            canvas.drawRect(player.getHitbox(), paintbrush);
+
+            paintbrush.setColor(Color.BLACK);
+
+            canvas.drawRect(item.getxPosition(),item.getyPosition(),
+                    item.getxPosition()+1400,item.getyPosition()+20,paintbrush);
+            canvas.drawRect(item1.getxPosition(),item1.getyPosition(),
+                    item1.getxPosition()+1400,item1.getyPosition()+20,paintbrush);
+            canvas.drawRect(item2.getxPosition(),item2.getyPosition(),
+                    item2.getxPosition()+1400,item2.getyPosition()+20,paintbrush);
+            canvas.drawRect(item3.getxPosition(),item3.getyPosition(),
+                    item3.getxPosition()+1400,item3.getyPosition()+20,paintbrush);
+
+//
+
+
+
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);

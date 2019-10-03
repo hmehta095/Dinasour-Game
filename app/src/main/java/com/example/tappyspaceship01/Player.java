@@ -20,7 +20,7 @@ public class Player {
         this.yPosition = y;
 
         // 2. Set the default image - all enemies have same image
-        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_ship);
+        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.dino64);
 
         // 3. Set the default hitbox - all enemies have same hitbox
         this.hitbox = new Rect(
